@@ -23,7 +23,23 @@ public class FourPointOne extends Application {
 	Alert results = new Alert(AlertType.INFORMATION);
 	results.setTitle("Results");
 	results.setHeaderText("Numbers found using " + n);
-	
+
+	// Special Case Output for N < 0.
+	if (n < 0) {
+		results.setTitle("Error");
+		results.setHeaderText("Invalid Input");
+		results.setContentText("Input must be greater than or equal to 0.");
+		results.showAndWait();
+		System.exit(0);
+	}
+
+	// Special Case Output for N = 0.
+	if (n == 0) {
+		results.setContentText(n + "! is 1, \nthe sum of the first " + n + " odd numbers is 0, and \nthe following are 0 fibonacci numbers:");
+		results.showAndWait();
+		System.exit(0);
+	}
+		
 	// Factorial Loop
 	int nFactorial = 1;
 	int factLoopCount = n;
@@ -55,6 +71,8 @@ public class FourPointOne extends Application {
 		fibOutput = (fibOutput + "  " + thirdFib);
 		fibLoopCount--;
 	} while (fibLoopCount > 1);
+	
+	// Setting Output using above calculations and displaying it.
 	results.setContentText(n + "! is " + nFactorial + ", \nthe sum of the first " + n + " odd numbers is " + sumOfOdds + ", \nand the first " + n + " fibonacci numbers are " + fibOutput + ".");
 	results.showAndWait(); 
 	}	
